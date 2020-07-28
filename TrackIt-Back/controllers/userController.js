@@ -255,7 +255,7 @@ let getUserByEmail=(req,res)=>{
                 let apiresponse = response.generate(true, 403, 'Error while fetching user', err)
                 res.send(apiresponse)
             }
-            else if(result==null) {
+            else if(check.isEmpty(result)) {
                 let apiresponse = response.generate(true, 404,"User Not exist", null)
                 res.send(apiresponse)
             }
