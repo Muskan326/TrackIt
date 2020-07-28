@@ -24,7 +24,7 @@ let issueSchema = new Schema(
         },
         state:{
             type:String,
-            default:'Unassigned'
+            default:'BackLog'
         },
         assignedTo:{
             type:String

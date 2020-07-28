@@ -233,7 +233,7 @@ let getUserById = (req, res) => {
                 let apiresponse = response.generate(true, 403, 'Error while fetching Assigned user', err)
                 res.send(apiresponse)
             }
-            else {
+            else if(!check.isEmpty(result)) {
                 let name = result.firstName + " " + result.lastName
                 let apiresponse = response.generate(false, 200, 'User Name', name)
                 res.send(apiresponse)

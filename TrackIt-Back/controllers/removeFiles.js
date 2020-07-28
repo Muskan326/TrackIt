@@ -12,7 +12,7 @@ aws.config.update({
 const s3 = new aws.S3();
 
 let deleteFile=(req,res)=>{
-    console.log(req.body.key)
+    
     var params = {
       Bucket: 'trackit-docs-bucket-public', 
       Key: req.body.key

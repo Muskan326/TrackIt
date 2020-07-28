@@ -9,6 +9,10 @@ const notifyModel = mongoose.model('Notification')
 
 
 let getNotifications=(req,res)=>{
+    if(req.params.userId==null){
+        let apiresponse=response.generate(true,403,"No User Id Passes","Pass The UserId")
+        res.send(apiresponse)
+    }
     notifyModel.findOne({'userId':req.params.userId},(err,result)=>{
         if(err) {
             let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)

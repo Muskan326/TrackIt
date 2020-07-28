@@ -62,6 +62,10 @@ let addComment = (req, res) => {
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 let getAllComments = (req, res) => {
+    if(req.params.issueId==null){
+        let apiresponse=response.generate(true,403,"No Issue Id passed","Pass Correct Issue Id")
+        res.send(apiresponse)
+    }
     commentModel.find({ 'issueId': req.params.issueId }, (err, result) => {
         if (err) {
             let apiresponse = response.generate(true, 403, 'Error while getting comments', err)
@@ -81,6 +85,10 @@ let getAllComments = (req, res) => {
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 let deleteComment = (req, res) => {
+    if(req.params.commentId==null){
+        let apiresponse=response.generate(true,403,"No Comment Id passed","Pass Correct Comments Id")
+        res.send(apiresponse)
+    }
     commentModel.findOneAndRemove({ 'commentId': req.params.commentId }, (err, result) => {
         if (err) {
             let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)

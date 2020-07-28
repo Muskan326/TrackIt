@@ -14,7 +14,7 @@ let setRouter = (app) => {
     app.post(baseUrl + '/signup', userController.signup)
     app.get(baseUrl + '/all', userController.getAllusersList)
     app.get(baseUrl + '/issues/all', issueController.getAllIssues)
-    app.get(baseUrl+'/view/:issueId',issueController.getIssueDetails)
+    app.get(baseUrl+'/view/:issueId?',issueController.getIssueDetails)
     app.post(baseUrl+'/edit/:issueId',issueController.editIssue)
     app.post(baseUrl+'/addComment',commentController.addComment)
     app.get(baseUrl+'/deleteComment/:commentId',commentController.deleteComment)

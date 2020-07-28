@@ -19,6 +19,10 @@ let getAllIssues = (req, res) => {
             let apiresponse = response.generate(true, 403, 'Error While fetching Issue details', err)
             res.send(apiresponse)
         }
+        else if(check.isEmpty(result)){
+            let apiresponse = response.generate(true, 404, 'No Issues To Show', result)
+            res.send(apiresponse)
+        }
         else {
             let apiresponse = response.generate(false, 200, 'Issue Details', result)
             res.send(apiresponse)
@@ -29,30 +33,25 @@ let getAllIssues = (req, res) => {
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 let getIssueDetails = (req, res) => {
+    if(req.params.issueId==null||req.params.issueId==undefined){
+        let apiResponse= response.generate(true, 403, 'Issue Id Not Passed', null)
+        res.send(apiResponse)
+    }
+    else{
     issueModel.findOne({ 'issueId': req.params.issueId }, (err, result) => {
         if (err) {
             let apiresponse = response.generate(true, 403, 'Error While fetching Issue details', err)
             res.send(apiresponse)
         }
+        else if(check.isEmpty(result)){
+            let apiresponse = response.generate(true, 404, 'Issue Id Does not exist', result)
+            res.send(apiresponse)
+        }
         else {
-            if (result.assignedTo != "false") {
-                issueModel.findOneAndUpdate({ 'issueId': req.params.issueId }, { $set: { 'state': 'Assigned' } }, (err, success) => {
-                    if (err) {
-                        let apiresponse = response.generate(true, 403, 'Error While fetching Issue details', err)
-                        res.send(apiresponse)
-                    }
-                    else {
-                        let apiresponse = response.generate(false, 200, 'Issue Details', success)
-                        res.send(apiresponse)
-                    }
-                })
-            }
-            else {
                 let apiresponse = response.generate(false, 200, 'Issue Details', result)
                 res.send(apiresponse)
-            }
         }
-    })
+    })}
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
@@ -91,14 +90,8 @@ let lodgeissue = (req, res) => {
                             res.send(apiresponse)
                         }
                     })
-                    issueModel.updateOne({ 'issueId': result.issueId }, { $set: { "state": "Assigned" } }, (error, success) => {
-                        if (error) {
-                            let apiresponse = response.generate(true, 403, 'Error While Raising Issue', err)
-                            res.send(apiresponse)
-                        }
-                    })
-                }
-                let apiresponse = response.generate(false, 200, 'Issue Lodged Successfully', result)
+                   
+                 } let apiresponse = response.generate(false, 200, 'Issue Lodged Successfully', result)
                 res.send(apiresponse)
 
             }
@@ -210,6 +203,21 @@ let editIssue = (req, res) => {
             res.send(apiresponse)
         }
         else {
+            watchModel.findOne({ 'issueId': req.params.issueId,'watcher':req.body.assignedTo},(err,result1)=>{
+                if (err) {
+                    let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)
+                    res.send(apiresponse)
+                }
+                else if(check.isEmpty(result1) && req.body.assignedTo){
+                    console.log("updating Watcher")
+                    watchModel.findOneAndUpdate({ 'issueId': req.params.issueId},{$push:{'watcher':req.body.assignedTo}},(err,res)=>{
+                        if (err) {
+                            let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)
+                            res.send(apiresponse)
+                        }  
+                    })
+                }
+            })
             watchModel.findOne({ 'issueId': req.params.issueId }, { 'watcher': 1, '_id': 0 }, (err, result) => {
                 if (err) {
                     let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)
