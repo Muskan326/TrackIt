@@ -244,6 +244,7 @@ let getUserById = (req, res) => {
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 let getUserByEmail=(req,res)=>{
+    console.log(req.params.email)
     if (req.params.email == undefined || req.params.email == null) {
         let apiresponse = response.generate(false, 200, 'Email Not passed', null)
         res.send(apiresponse)
@@ -254,7 +255,7 @@ let getUserByEmail=(req,res)=>{
                 let apiresponse = response.generate(true, 403, 'Error while fetching user', err)
                 res.send(apiresponse)
             }
-            else if(check.isEmpty(result)) {
+            else if(result==null) {
                 let apiresponse = response.generate(true, 404,"User Not exist", null)
                 res.send(apiresponse)
             }
