@@ -26,6 +26,7 @@ let setRouter = (app) => {
     app.get(baseUrl+'/delete/:issueId',issueController.deleteIssue)
     app.get(baseUrl + '/dashboard', issueController.getIssuesStat)
     app.get(baseUrl+'/:userId',userController.getUserById)
+    app.get(baseUrl+'/:email',userController.getUserByEmail)
     app.get(baseUrl+'/logout/:userId',userController.logout)
     app.post(baseUrl + '/dashboard/lodge', issueController.lodgeissue)
     app.get(baseUrl + '/dashboard/assigned/:userId', issueController.getAssignedIssues),

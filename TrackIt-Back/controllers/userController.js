@@ -156,10 +156,9 @@ let signup = (req, res) => {
                 userId: id,
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
-                mobile: req.body.mobile,
+                mobile: Number(req.body.mobile),
                 email: req.body.email,
                 password: passcheck.hashpassword(req.body.password),
-                lodgedIssue: []
             })
             user.save((err, result) => {
                 if (err) {
@@ -224,7 +223,7 @@ let getAllusersList = (req, res) => {
 
 let getUserById = (req, res) => {
     if (req.params.userId == "null" || req.params.userId == "false" || req.params.userId == "undefined" || req.params.userId == null) {
-        let apiresponse = response.generate(false, 200, 'User Name', "Not Yet Assigned")
+        let apiresponse = response.generate(false, 403, 'User Name', "Not Yet Assigned")
         res.send(apiresponse)
     }
     else {
@@ -242,7 +241,32 @@ let getUserById = (req, res) => {
     }
 }
 
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
 
+let getUserByEmail=(req,res)=>{
+    if (req.params.email == undefined || req.params.email == null) {
+        let apiresponse = response.generate(false, 200, 'Email Not passed', null)
+        res.send(apiresponse)
+    }
+    else {
+        userModel.findOne({'email': req.params.email },(err, result) => {
+            if (err) {
+                let apiresponse = response.generate(true, 403, 'Error while fetching user', err)
+                res.send(apiresponse)
+            }
+            else if(check.isEmpty(result)) {
+                let apiresponse = response.generate(true, 404,"User Not exist", null)
+                res.send(apiresponse)
+            }
+            else{
+                let apiresponse=response.generate(false,200,"User Found",result)
+                res.send(apiresponse)
+            }
+        })
+    }
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 module.exports = {
     login: login,
@@ -250,4 +274,5 @@ module.exports = {
     signup: signup,
     getAllusersList: getAllusersList,
     getUserById: getUserById,
+    getUserByEmail:getUserByEmail
 }

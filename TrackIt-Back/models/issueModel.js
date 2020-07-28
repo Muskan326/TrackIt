@@ -59,6 +59,7 @@ let userSchema=new Schema(
     },
     mobile:{
         type:Number,
+        default:0000000000
     },
     email:{
         type:String,
