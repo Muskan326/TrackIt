@@ -195,7 +195,7 @@ let logout = (req, res) => {
             let apiResponse = response.generate(true, 500, `error occurred: ${err.message}`, null)
             res.send(apiResponse)
         } else if (check.isEmpty(result)) {
-            let apiResponse = response.generate(true, 404, 'Already Logged Out or Invalid UserId', null)
+            let apiResponse = response.generate(true, 404, 'Already Logged Out or Invalid UserId', result)
             res.send(apiResponse)
         } else {
             let apiResponse = response.generate(false, 200, 'Logged Out Successfully', null)
