@@ -5,8 +5,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 aws.config.update({
-  secretAccessKey: 'IthiPQzGOBQKCDQ3AiMkai89uSR80d2A5tGZQgri',
-  accessKeyId: 'AKIAXTIPWYVR5HVROI5X',
+  secretAccessKey: '',
+  accessKeyId: '',
   region: 'ap-south-1' //E.g us-east-1
 });
 
