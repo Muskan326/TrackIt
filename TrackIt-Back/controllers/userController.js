@@ -156,7 +156,7 @@ let signup = (req, res) => {
                 userId: id,
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
-                mobile: Number(req.body.mobile),
+                mobile:req.body.mobile,
                 email: req.body.email,
                 password: passcheck.hashpassword(req.body.password),
             })
@@ -244,7 +244,6 @@ let getUserById = (req, res) => {
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 let getUserByEmail=(req,res)=>{
-    console.log(req.params.email)
     if (req.params.email == undefined || req.params.email == null) {
         let apiresponse = response.generate(false, 200, 'Email Not passed', null)
         res.send(apiresponse)
