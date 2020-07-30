@@ -227,7 +227,7 @@ let editIssue = (req, res) => {
                     console.log(result.watcher)
                     let notify = {
                         issueId: req.body.issueId,
-                        update: "The Issue '" + req.body.title + "' was edited by the issue reporter ."
+                        update: "The Issue '" + req.body.title + "' was edited by the issue reporter/asignee ."
                     }
 
                     notifyModel.updateMany({ 'userId': { $in: result.watcher } }, { $push: { 'notify': notify }}, { multi: true }, (err, resp) => {
