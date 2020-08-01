@@ -14,7 +14,7 @@ const s3 = new aws.S3();
 let deleteFile=(req,res)=>{
     
     var params = {
-      Bucket: 'trackit-docs-bucket-public', 
+      Bucket: '', 
       Key: req.body.key
     };
     s3.deleteObject(params, function(err, data) {
