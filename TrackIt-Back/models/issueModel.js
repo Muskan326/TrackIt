@@ -1,6 +1,6 @@
 // importing mongoose module
 const mongoose = require('mongoose')
-const time=require('./../libs/timeLib')
+const time=require('../libs/timeLib')
 // import schema 
 const Schema = mongoose.Schema;
 

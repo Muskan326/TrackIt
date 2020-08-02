@@ -22,7 +22,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"Comment deleted Successfully\",\n\t    \"data\": null\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t  \"error\": false,\n\t  \"status\": 200,\n\t  \"message\": \"Comment deleted Successfully\",\n\t  \"data\": null\n\t\t  }\n\t  }\n  }",
           "type": "json"
         }
       ]
@@ -31,7 +31,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error while deleting comment\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n\t  \"error\": true,\n\t  \"message\": \"Error while deleting comment\",\n\t  \"status\": 500,\n\t  \"data\": null\n\t }",
           "type": "json"
         }
       ]
@@ -63,7 +63,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"All Comments\",\n\t    \"data\": [\n                {\n                    issueId:\"String\",\n                    userId:\"String\",\n                    comment:\"String\",\n                    date:\"Date\"\n               }\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t\"error\": false,\n\t\"status\": 200,\n\t\"message\": \"All Comments\",\n\t\"data\": [\n\t\t\t{\n\t\t\t\tissueId:\"String\",\n\t\t\t\tuserId:\"String\",\n\t\t\t\tcomment:\"String\",\n\t\t\t\tdate:\"Date\"\n\t\t   }\n\t\t\t]\n\t\t}\n\t}\n}",
           "type": "json"
         }
       ]
@@ -72,7 +72,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error while getting comments \",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n\t\"error\": true,\n\t\"message\": \"Error while getting comments \",\n\t\"status\": 500,\n\t\"data\": null\n   }",
           "type": "json"
         }
       ]
@@ -125,7 +125,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"Comment updated Successfully\",\n\t    \"data\": [\n                {\n                    issueId:\"String\",\n                    userId:\"String\",\n                    comment:\"String\",\n                    date:\"Date\"\n               }\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n   \"error\": false,\n   \"status\": 200,\n   \"message\": \"Comment updated Successfully\",\n   \"data\": [\n\t\t   {\n\t\t\t   issueId:\"String\",\n\t\t\t   userId:\"String\",\n\t\t\t   comment:\"String\",\n\t\t\t   date:\"Date\"\n\t\t  }\n\t\t   ]\n\t   }\n   }\n}",
           "type": "json"
         }
       ]
@@ -134,7 +134,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error while Adding Comment \",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n   \"error\": true,\n   \"message\": \"Error while Adding Comment \",\n   \"status\": 500,\n   \"data\": null\n  }",
           "type": "json"
         }
       ]
@@ -255,7 +255,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"The list of Assigned Issues\",\n\t    \"data\": [\n                {\n                    issueId:\"String\",\n                    title:\"String\",\n                    description:\"String\",\n                    author:\"String\",\n                    state:\"String\",\n                    assignedTo:\"String\",\n                    files:\"Array\",\n                    created:\"Date\",\n                    lastModified:\"Date\"\n               }\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t   \"error\": false,\n\t   \"status\": 200,\n\t   \"message\": \"The list of Assigned Issues\",\n\t   \"data\": [\n\t\t\t   {\n\t\t\t\t   issueId:\"String\",\n\t\t\t\t   title:\"String\",\n\t\t\t\t   description:\"String\",\n\t\t\t\t   author:\"String\",\n\t\t\t\t   state:\"String\",\n\t\t\t\t   assignedTo:\"String\",\n\t\t\t\t   files:\"Array\",\n\t\t\t\t   created:\"Date\",\n\t\t\t\t   lastModified:\"Date\"\n\t\t\t  }\n\t\t\t   ]\n\t\t   }\n\t   }\n   }",
           "type": "json"
         }
       ]
@@ -264,7 +264,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error while fetching Assigned Issues\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n\t   \"error\": true,\n\t   \"message\": \"Error while fetching Assigned Issues\",\n\t   \"status\": 500,\n\t   \"data\": null\n\t  }",
           "type": "json"
         }
       ]
@@ -296,7 +296,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"Issue deleted successfully\",\n\t    \"data\":null\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t   \"error\": false,\n\t   \"status\": 200,\n\t   \"message\": \"Issue deleted successfully\",\n\t   \"data\":null\n\t\t   }\n\t   }\n   }",
           "type": "json"
         }
       ]
@@ -305,7 +305,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error while deleting Issues\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n\t   \"error\": true,\n\t   \"message\": \"Error while deleting Issues\",\n\t   \"status\": 500,\n\t   \"data\": null\n\t  }",
           "type": "json"
         }
       ]
@@ -324,7 +324,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"Issue Details\",\n\t    \"data\": [\n                {\n                    issueId:\"String\",\n                    title:\"String\",\n                    description:\"String\",\n                    author:\"String\",\n                    state:\"String\",\n                    assignedTo:\"String\",\n                    files:\"Array\",\n                    created:\"Date\",\n                    lastModified:\"Date\"\n               }\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n \"error\": false,\n \"status\": 200,\n \"message\": \"Issue Details\",\n \"data\": [\n\t\t {\n\t\t\t issueId:\"String\",\n\t\t\t title:\"String\",\n\t\t\t description:\"String\",\n\t\t\t author:\"String\",\n\t\t\t state:\"String\",\n\t\t\t assignedTo:\"String\",\n\t\t\t files:\"Array\",\n\t\t\t created:\"Date\",\n\t\t\t lastModified:\"Date\"\n\t\t}\n\t\t ]\n\t }\n }\n}",
           "type": "json"
         }
       ]
@@ -333,7 +333,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error while fetching Issues\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n \"error\": true,\n \"message\": \"Error while fetching Issues\",\n \"status\": 500,\n \"data\": null\n}",
           "type": "json"
         }
       ]
@@ -345,7 +345,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/api/v1/users/view/:issueId",
-    "title": "To get deatils of a single issue",
+    "title": "To get details of a single issue",
     "version": "0.0.1",
     "group": "Issue",
     "parameter": {
@@ -365,7 +365,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"Issue Details\",\n\t    \"data\": [\n                {\n                    issueId:\"String\",\n                    title:\"String\",\n                    description:\"String\",\n                    author:\"String\",\n                    state:\"String\",\n                    assignedTo:\"String\",\n                    files:\"Array\",\n                    created:\"Date\",\n                    lastModified:\"Date\"\n               }\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n  \"error\": false,\n  \"status\": 200,\n  \"message\": \"Issue Details\",\n  \"data\": [\n\t\t  {\n\t\t\t  issueId:\"String\",\n\t\t\t  title:\"String\",\n\t\t\t  description:\"String\",\n\t\t\t  author:\"String\",\n\t\t\t  state:\"String\",\n\t\t\t  assignedTo:\"String\",\n\t\t\t  files:\"Array\",\n\t\t\t  created:\"Date\",\n\t\t\t  lastModified:\"Date\"\n\t\t }\n\t\t  ]\n\t  }\n  }\n}",
           "type": "json"
         }
       ]
@@ -374,7 +374,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error while fetching Issues\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n  \"error\": true,\n  \"message\": \"Error while fetching Issues\",\n  \"status\": 500,\n  \"data\": null\n }",
           "type": "json"
         }
       ]
@@ -386,7 +386,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/api/v1/users/dashboard/lodge",
-    "title": "To get deatils of a single issue",
+    "title": "To Lodge a new Issue",
     "version": "0.0.1",
     "group": "Issue",
     "parameter": {
@@ -441,7 +441,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"Issue Lodged Successfully\",\n\t    \"data\": [\n                {\n                    issueId:\"String\",\n                    title:\"String\",\n                    description:\"String\",\n                    author:\"String\",\n                    state:\"String\",\n                    assignedTo:\"String\",\n                    files:\"Array\",\n                    created:\"Date\",\n                    lastModified:\"Date\"\n               }\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n  \"error\": false,\n  \"status\": 200,\n  \"message\": \"Issue Lodged Successfully\",\n  \"data\": [\n\t\t  {\n\t\t\t  issueId:\"String\",\n\t\t\t  title:\"String\",\n\t\t\t  description:\"String\",\n\t\t\t  author:\"String\",\n\t\t\t  state:\"String\",\n\t\t\t  assignedTo:\"String\",\n\t\t\t  files:\"Array\",\n\t\t\t  created:\"Date\",\n\t\t\t  lastModified:\"Date\"\n\t\t }\n\t\t  ]\n\t  }\n  }\n}",
           "type": "json"
         }
       ]
@@ -450,7 +450,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error While Raising Issue\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n  \"error\": true,\n  \"message\": \"Error While Raising Issue\",\n  \"status\": 500,\n  \"data\": null\n }",
           "type": "json"
         }
       ]
@@ -462,7 +462,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/api/v1/users/edit/:issueId",
-    "title": "To get deatils of a single issue",
+    "title": "To get details of a single issue",
     "version": "0.0.1",
     "group": "Issue",
     "parameter": {
@@ -482,7 +482,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"Issue Details\",\n\t    \"data\": [\n                {\n                    issueId:\"String\",\n                    title:\"String\",\n                    description:\"String\",\n                    author:\"String\",\n                    state:\"String\",\n                    assignedTo:\"String\",\n                    files:\"Array\",\n                    created:\"Date\",\n                    lastModified:\"Date\"\n               }\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t   \"error\": false,\n\t   \"status\": 200,\n\t   \"message\": \"Issue Details\",\n\t   \"data\": [\n\t\t\t   {\n\t\t\t\t   issueId:\"String\",\n\t\t\t\t   title:\"String\",\n\t\t\t\t   description:\"String\",\n\t\t\t\t   author:\"String\",\n\t\t\t\t   state:\"String\",\n\t\t\t\t   assignedTo:\"String\",\n\t\t\t\t   files:\"Array\",\n\t\t\t\t   created:\"Date\",\n\t\t\t\t   lastModified:\"Date\"\n\t\t\t  }\n\t\t\t   ]\n\t\t   }\n\t   }\n   }",
           "type": "json"
         }
       ]
@@ -491,7 +491,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error while Editing Issues\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n\t   \"error\": true,\n\t   \"message\": \"Error while Editing Issues\",\n\t   \"status\": 500,\n\t   \"data\": null\n\t  }",
           "type": "json"
         }
       ]
@@ -571,7 +571,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"The list of Assigned Issues\",\n\t    \"data\": [\n                {\n                    userId:\"String\",\n                    notify:\"Array\"\n               }\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t   \"error\": false,\n\t   \"status\": 200,\n\t   \"message\": \"The list of Assigned Issues\",\n\t   \"data\": [\n\t\t\t   {\n\t\t\t\t   userId:\"String\",\n\t\t\t\t   notify:\"Array\"\n\t\t\t  }\n\t\t\t   ]\n\t\t   }\n\t   }\n   }",
           "type": "json"
         }
       ]
@@ -580,7 +580,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error while fetching notification\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n\t   \"error\": true,\n\t   \"message\": \"Error while fetching notification\",\n\t   \"status\": 500,\n\t   \"data\": null\n\t  }",
           "type": "json"
         }
       ]
@@ -640,7 +640,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"List Of All Users\",\n\t    \"data\": [\n                {\n                    firstName:\"String\",\n                    lastName:\"String\",\n                }\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t \"error\": false,\n\t \"status\": 200,\n\t \"message\": \"List Of All Users\",\n\t \"data\": [\n\t\t\t {\n\t\t\t\t firstName:\"String\",\n\t\t\t\t lastName:\"String\",\n\t\t\t }\n\t\t\t ]\n\t\t }\n\t }\n }",
           "type": "json"
         }
       ]
@@ -649,7 +649,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error while fetching Users\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n\t \"error\": true,\n\t \"message\": \"Error while fetching Users\",\n\t \"status\": 500,\n\t \"data\": null\n\t}",
           "type": "json"
         }
       ]
@@ -722,7 +722,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"Logged Out Successfully\",\n\t    \"data\":null\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n   \"error\": false,\n   \"status\": 200,\n   \"message\": \"Logged Out Successfully\",\n   \"data\":null\n\t   }\n   }\n}",
           "type": "json"
         }
       ]
@@ -731,7 +731,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Already Logged Out or Invalid UserId\",\n\t    \"status\": 404,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n   \"error\": true,\n   \"message\": \"Already Logged Out or Invalid UserId\",\n   \"status\": 404,\n   \"data\": null\n  }",
           "type": "json"
         }
       ]
@@ -763,7 +763,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"User Name\",\n\t    \"data\":[\n            name:\"String\"\n        ]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t   \"error\": false,\n\t   \"status\": 200,\n\t   \"message\": \"User Name\",\n\t   \"data\":[\n\t\t   name:\"String\"\n\t   ]\n\t\t   }\n\t   }\n   }",
           "type": "json"
         }
       ]
@@ -772,7 +772,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error while fetching username\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n\t   \"error\": true,\n\t   \"message\": \"Error while fetching username\",\n\t   \"status\": 500,\n\t   \"data\": null\n\t  }",
           "type": "json"
         }
       ]
@@ -880,7 +880,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"User Registered Successfully\",\n\t    \"data\": [\n                {\n                    userId:\"String\",\n                    firstName:\"String\",\n                    lastName:\"String\",\n                    mobile:\"Number\",\n                    email:\"String\",\n                    lodgedIssue:\"Array\",\n                    assignedIssue:\"Array\"\n                }\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t\"error\": false,\n\t\"status\": 200,\n\t\"message\": \"User Registered Successfully\",\n\t\"data\": [\n\t\t\t{\n\t\t\t\tuserId:\"String\",\n\t\t\t\tfirstName:\"String\",\n\t\t\t\tlastName:\"String\",\n\t\t\t\tmobile:\"Number\",\n\t\t\t\temail:\"String\",\n\t\t\t\tlodgedIssue:\"Array\",\n\t\t\t\tassignedIssue:\"Array\"\n\t\t\t}\n\t\t\t]\n\t\t}\n\t}\n}",
           "type": "json"
         }
       ]
@@ -889,7 +889,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error while Signing up\",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n\t\"error\": true,\n\t\"message\": \"Error while Signing up\",\n\t\"status\": 500,\n\t\"data\": null\n   }",
           "type": "json"
         }
       ]
@@ -928,7 +928,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"Added To watchList\",\n\t    \"data\": [\n                {\n                    issueId:\"String\",\n                    watcher:\"String\"\n               }\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t   \"error\": false,\n\t   \"status\": 200,\n\t   \"message\": \"Added To watchList\",\n\t   \"data\": [\n\t\t\t   {\n\t\t\t\t   issueId:\"String\",\n\t\t\t\t   watcher:\"String\"\n\t\t\t  }\n\t\t\t   ]\n\t\t   }\n\t   }\n   }",
           "type": "json"
         }
       ]
@@ -937,7 +937,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error while adding to watch \",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n\t   \"error\": true,\n\t   \"message\": \"Error while adding to watch \",\n\t   \"status\": 500,\n\t   \"data\": null\n\t  }",
           "type": "json"
         }
       ]
@@ -1017,7 +1017,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"IsWatcher\",\n\t    \"data\": true/false\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n\t  \"error\": false,\n\t  \"status\": 200,\n\t  \"message\": \"IsWatcher\",\n\t  \"data\": true/false\n\t\t  }\n\t  }\n  }",
           "type": "json"
         }
       ]
@@ -1026,7 +1026,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error While fetching watchList \",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n\t  \"error\": true,\n\t  \"message\": \"Error While fetching watchList \",\n\t  \"status\": 500,\n\t  \"data\": null\n\t }",
           "type": "json"
         }
       ]
@@ -1065,7 +1065,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " {\n\t    \"error\": false,\n        \"status\": 200,\n        \"message\": \"Removed From watchList\",\n\t    \"data\":[\n                {\n                    issueId:\"String\",\n                    watcher:\"String\"\n               }\n\t    \t\t]\n\t    \t}\n\t\t}\n\t}",
+          "content": " {\n  \"error\": false,\n  \"status\": 200,\n  \"message\": \"Removed From watchList\",\n  \"data\":[\n\t\t  {\n\t\t\t  issueId:\"String\",\n\t\t\t  watcher:\"String\"\n\t\t }\n\t\t  ]\n\t  }\n  }\n}",
           "type": "json"
         }
       ]
@@ -1074,7 +1074,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "\n{\n\t    \"error\": true,\n\t    \"message\": \"Error While deleting watcher \",\n\t    \"status\": 500,\n\t    \"data\": null\n\t   }",
+          "content": "\n{\n  \"error\": true,\n  \"message\": \"Error While deleting watcher \",\n  \"status\": 500,\n  \"data\": null\n }",
           "type": "json"
         }
       ]
