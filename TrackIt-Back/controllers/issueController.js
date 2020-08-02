@@ -13,10 +13,12 @@ const notifyModel = mongoose.model('Notification')
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+//getting all the issues
 let getAllIssues = (req, res) => {
     issueModel.find({}, (err, result) => {
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error While fetching Issue details', err)
+            let apiresponse = response.generate(true, 500, 'Error While fetching Issue details', null)
             res.send(apiresponse)
         }
         else if(check.isEmpty(result)){
@@ -32,15 +34,17 @@ let getAllIssues = (req, res) => {
 
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+// getting details of an issue
 let getIssueDetails = (req, res) => {
     if(req.params.issueId==null||req.params.issueId==undefined){
-        let apiResponse= response.generate(true, 403, 'Issue Id Not Passed', null)
+        let apiResponse= response.generate(true, 500, 'Issue Id Not Passed', null)
         res.send(apiResponse)
     }
     else{
     issueModel.findOne({ 'issueId': req.params.issueId }, (err, result) => {
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error While fetching Issue details', err)
+            let apiresponse = response.generate(true, 500, 'Error While fetching Issue details', null)
             res.send(apiresponse)
         }
         else if(check.isEmpty(result)){
@@ -55,9 +59,11 @@ let getIssueDetails = (req, res) => {
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+// Lodging a new issue
 let lodgeissue = (req, res) => {
     if (check.isEmpty(req)) {
-        let apiresponse = response.generate(true, 403, 'Please Enter Details to lodge an Issue', req.body)
+        let apiresponse = response.generate(true, 500, 'Please Enter Details to lodge an Issue', req.body)
         res.send(apiresponse)
     }
     else {
@@ -72,13 +78,13 @@ let lodgeissue = (req, res) => {
         })
         Issuedata.save((err, result) => {
             if (err) {
-                let apiresponse = response.generate(true, 403, 'Error While Raising Issue', err)
+                let apiresponse = response.generate(true, 500, 'Error While Raising Issue', null)
                 res.send(apiresponse)
             }
             else {
                 userModel.updateOne({ 'userId': req.body.author }, { $push: { lodgedIssue: [id] } }, (error, success) => {
                     if (error) {
-                        let apiresponse = response.generate(true, 403, 'Error While Raising Issue', err)
+                        let apiresponse = response.generate(true, 500, 'Error While Raising Issue', null)
                         res.send(apiresponse)
                     }
                 })
@@ -86,7 +92,7 @@ let lodgeissue = (req, res) => {
                 if (req.body.assignedTo) {
                     userModel.updateOne({ 'userId': req.body.assignedTo }, { $push: { assignedIssue: [id] } }, (error, success) => {
                         if (error) {
-                            let apiresponse = response.generate(true, 403, 'Error While Raising Issue', err)
+                            let apiresponse = response.generate(true, 500, 'Error While Raising Issue', null)
                             res.send(apiresponse)
                         }
                     })
@@ -101,15 +107,16 @@ let lodgeissue = (req, res) => {
     }
 }
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+//Getting Assigned Issue for a user
 let getAssignedIssues = (req, res) => {
     userModel.findOne({ 'userId': req.params.userId }, (err, result) => {
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error while fetching Assigned Issues', req.body)
+            let apiresponse = response.generate(true, 500, 'Error while fetching Assigned Issues', req.body)
             res.send(apiresponse)
         }
 
         else if (check.isEmpty(result)) {
-            let apiresponse = response.generate(true, 403, 'User Not Found', req.body)
+            let apiresponse = response.generate(true, 500, 'User Not Found', req.body)
             res.send(apiresponse)
         }
 
@@ -117,11 +124,11 @@ let getAssignedIssues = (req, res) => {
             let list = result.assignedIssue
             issueModel.find({ 'issueId': list }, (err, result) => {
                 if (err) {
-                    let apiresponse = response.generate(true, 403, 'Error while fetching Assigned Issues', err)
+                    let apiresponse = response.generate(true, 500, 'Error while fetching Assigned Issues', null)
                     res.send(apiresponse)
                 }
                 else if (check.isEmpty(result)) {
-                    let apiresponse = response.generate(true, 403, 'No Issues Not Found', result)
+                    let apiresponse = response.generate(true, 500, 'No Issues Not Found', result)
                     res.send(apiresponse)
 
                 }
@@ -138,15 +145,16 @@ let getAssignedIssues = (req, res) => {
 }
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
+//Getting lodged issue by a user
 let getLodgedIssues = (req, res) => {
     userModel.findOne({ 'userId': req.params.userId }, (err, result) => {
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error while fetching Assigned Issues', err)
+            let apiresponse = response.generate(true, 500, 'Error while fetching Assigned Issues', err)
             res.send(apiresponse)
         }
 
         else if (check.isEmpty(result)) {
-            let apiresponse = response.generate(true, 403, 'User Not Found', req.params.userId)
+            let apiresponse = response.generate(true, 500, 'User Not Found', req.params.userId)
             res.send(apiresponse)
         }
 
@@ -154,11 +162,11 @@ let getLodgedIssues = (req, res) => {
             let list = result.lodgedIssue
             issueModel.find({ 'issueId': list }, (err, result) => {
                 if (err) {
-                    let apiresponse = response.generate(true, 403, 'Error while fetching Assigned Issues', err)
+                    let apiresponse = response.generate(true, 500, 'Error while fetching Assigned Issues', err)
                     res.send(apiresponse)
                 }
                 else if (check.isEmpty(result)) {
-                    let apiresponse = response.generate(true, 403, 'No Issues Not Found', result)
+                    let apiresponse = response.generate(true, 500, 'No Issues Not Found', result)
                     res.send(apiresponse)
 
                 }
@@ -175,10 +183,11 @@ let getLodgedIssues = (req, res) => {
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+//getting the issue Statistics
 let getIssuesStat = (req, res) => {
     issueModel.aggregate([{ $group: { _id: "$state", total: { $sum: 1 } } }], (err, result) => {
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error while fetching report', err)
+            let apiresponse = response.generate(true, 500, 'Error while fetching report', err)
             res.send(apiresponse)
         }
         else {
@@ -195,24 +204,24 @@ let getIssuesStat = (req, res) => {
 
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
+//Editting an Issue
 let editIssue = (req, res) => {
     issueModel.findOneAndUpdate({ 'issueId': req.params.issueId }, req.body, { multi: true }, (err, result) => {
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)
+            let apiresponse = response.generate(true, 500, 'Error while editting Issue', null)
             res.send(apiresponse)
         }
         else {
             watchModel.findOne({ 'issueId': req.params.issueId,'watcher':req.body.assignedTo},(err,result1)=>{
                 if (err) {
-                    let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)
+                    let apiresponse = response.generate(true, 500, 'Error while editting Issue', null)
                     res.send(apiresponse)
                 }
                 else if(check.isEmpty(result1) && req.body.assignedTo){
                     console.log("updating Watcher")
                     watchModel.findOneAndUpdate({ 'issueId': req.params.issueId},{$push:{'watcher':req.body.assignedTo}},(err,res)=>{
                         if (err) {
-                            let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)
+                            let apiresponse = response.generate(true, 500, 'Error while editting Issue', null)
                             res.send(apiresponse)
                         }  
                     })
@@ -220,7 +229,7 @@ let editIssue = (req, res) => {
             })
             watchModel.findOne({ 'issueId': req.params.issueId }, { 'watcher': 1, '_id': 0 }, (err, result) => {
                 if (err) {
-                    let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)
+                    let apiresponse = response.generate(true, 500, 'Error while editting Issue', null)
                     res.send(apiresponse)
                 }
                 else {
@@ -232,11 +241,11 @@ let editIssue = (req, res) => {
 
                     notifyModel.updateMany({ 'userId': { $in: result.watcher } }, { $push: { 'notify': notify }}, { multi: true }, (err, resp) => {
                         if (err) {
-                            let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)
+                            let apiresponse = response.generate(true, 500, 'Error while editting Issue', null)
                             res.send(apiresponse)
                         }
                         else {
-                            let apiresponse = response.generate(false, 200, 'Comment updated Successfully', resp)
+                            let apiresponse = response.generate(false, 200, 'updated Successfully', resp)
                             res.send(apiresponse)
                         }
                     })
@@ -248,7 +257,7 @@ let editIssue = (req, res) => {
 }
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
+//Deleting a Issue
 let deleteIssue = (req, res) => {
     issueModel.findOneAndRemove({ issueId: req.params.issueId }, (err, result) => {
         if (err) {
@@ -283,11 +292,11 @@ let deleteIssue = (req, res) => {
 
 }
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
+//Deleting An File Key for an issue 
 let deleteFilekey=(req,res)=>{
     issueModel.findOneAndUpdate({'issueId':req.params.issueId},{$pull:{'files':{'key':req.params.key}}},(err,result)=>{
         if(err) {
-            let apiresponse = response.generate(true, 403, 'Error while Deleting File', err)
+            let apiresponse = response.generate(true, 500, 'Error while Deleting File', err)
             res.send(apiresponse)
         }
         else {

@@ -7,7 +7,7 @@ dotenv.config();
 aws.config.update({
   secretAccessKey: '',
   accessKeyId: '',
-  region: 'ap-south-1' //E.g us-east-1
+  region: 'ap-south-1' 
 });
 
 const s3 = new aws.S3();
@@ -16,6 +16,8 @@ const fileFilter = (req, file, cb) => {
      cb(null, true);
   } 
 
+
+//Uploading File to bucket
 const upload = multer({
   fileFilter: fileFilter,
   storage: multerS3({

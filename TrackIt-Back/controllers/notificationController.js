@@ -7,15 +7,15 @@ const notifyModel = mongoose.model('Notification')
 
 
 
-
+//getting All Notifications for a user
 let getNotifications=(req,res)=>{
     if(req.params.userId==null){
-        let apiresponse=response.generate(true,403,"No User Id Passes","Pass The UserId")
+        let apiresponse=response.generate(true,500,"No User Id Passes","Pass The UserId")
         res.send(apiresponse)
     }
     notifyModel.findOne({'userId':req.params.userId},(err,result)=>{
         if(err) {
-            let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)
+            let apiresponse = response.generate(true, 500, 'Error while fetching notification', null)
             res.send(apiresponse)
         }
         else {
@@ -25,10 +25,12 @@ let getNotifications=(req,res)=>{
     })
 }
 
+
+//reading all notification for an issue for a user
 let readNotificationForIssue=(req,res)=>{
     notifyModel.update({'userId':req.params.userId},{$pull:{'notify':{'issueId':req.params.issueId}}},(err,result)=>{
         if(err) {
-            let apiresponse = response.generate(true, 403, 'Error while fetching Notifications', err)
+            let apiresponse = response.generate(true, 500, 'Error while fetching Notifications', err)
             res.send(apiresponse)
         }
         else {
@@ -38,10 +40,12 @@ let readNotificationForIssue=(req,res)=>{
     })
 }
 
+
+//Marking all issues as read
 let markAllRead=(req,res)=>{
     notifyModel.update({'userId':req.params.userId},{$set:{'notify':[]}},(err,result)=>{
         if(err) {
-            let apiresponse = response.generate(true, 403, 'Error while Marking as read', err)
+            let apiresponse = response.generate(true, 500, 'Error while Marking as read', err)
             res.send(apiresponse)
         }
         else {

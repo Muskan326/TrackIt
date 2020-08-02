@@ -10,9 +10,12 @@ const commentModel = mongoose.model('Comment')
 const notifyModel = mongoose.model('Notification')
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+//To Add a new Comment 
+
 let addComment = (req, res) => {
     if (req.body == null || req.body == undefined) {
-        let apiresponse = response.generate(true, 403, 'No Comments To Add', null)
+        let apiresponse = response.generate(true, 500, 'No Comments To Add', null)
         res.send(apiresponse)
     }
     else {
@@ -26,13 +29,13 @@ let addComment = (req, res) => {
 
         newcom.save((err, result) => {
             if (err) {
-                let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)
+                let apiresponse = response.generate(true, 500, 'Error while Adding Comment', null)
                 res.send(apiresponse)
             }
             else {
                 watchModel.findOne({ 'issueId': req.body.issueId }, { 'watcher': 1, '_id': 0 }, (err, result) => {
                     if (err) {
-                        let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)
+                        let apiresponse = response.generate(true, 500, 'Error while Adding Comment', null)
                         res.send(apiresponse)
                     }
                     else {
@@ -43,7 +46,7 @@ let addComment = (req, res) => {
 
                         notifyModel.updateMany({ 'userId': { $in: result.watcher } }, { $push: { 'notify': notify }}, { multi: true }, (err, resp) => {
                             if (err) {
-                                let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)
+                                let apiresponse = response.generate(true, 500, 'Error while Adding Comment', null)
                                 res.send(apiresponse)
                             }
                             else {
@@ -61,14 +64,16 @@ let addComment = (req, res) => {
 }
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+//Getting all the comments for an issue
 let getAllComments = (req, res) => {
     if(req.params.issueId==null){
-        let apiresponse=response.generate(true,403,"No Issue Id passed","Pass Correct Issue Id")
+        let apiresponse=response.generate(true,500,"No Issue Id passed","Pass Correct Issue Id")
         res.send(apiresponse)
     }
     commentModel.find({ 'issueId': req.params.issueId }, (err, result) => {
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error while getting comments', err)
+            let apiresponse = response.generate(true, 500, 'Error while getting comments', err)
             res.send(apiresponse)
         }
         else if (check.isEmpty(result)) {
@@ -84,14 +89,16 @@ let getAllComments = (req, res) => {
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+//Deleting a comment
 let deleteComment = (req, res) => {
     if(req.params.commentId==null){
-        let apiresponse=response.generate(true,403,"No Comment Id passed","Pass Correct Comments Id")
+        let apiresponse=response.generate(true,500,"No Comment Id passed","Pass Correct Comments Id")
         res.send(apiresponse)
     }
     commentModel.findOneAndRemove({ 'commentId': req.params.commentId }, (err, result) => {
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error while editting Issue', err)
+            let apiresponse = response.generate(true, 500, 'Error while deleting comment', null)
             res.send(apiresponse)
         }
         else {

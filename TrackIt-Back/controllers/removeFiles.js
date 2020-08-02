@@ -11,6 +11,8 @@ aws.config.update({
 
 const s3 = new aws.S3();
 
+
+//remove an Attachment
 let deleteFile=(req,res)=>{
     
     var params = {
@@ -19,7 +21,7 @@ let deleteFile=(req,res)=>{
     };
     s3.deleteObject(params, function(err, data) {
       if (err){
-        let apiresponse=response.generate(true,403,'File Not Deleted',err)
+        let apiresponse=response.generate(true,500,'File Not Deleted',err)
         res.send(apiresponse)
       }// an error occurred
       else{

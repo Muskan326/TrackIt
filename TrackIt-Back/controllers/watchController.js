@@ -8,11 +8,11 @@ const watchModel = mongoose.model('Watcher')
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
-
+//Adding A user To WatchList
 let addToWatch = (req, res) => {
     watchModel.findOneAndUpdate({ 'issueId': req.params.issueId }, { $push: { watcher: req.params.userId } }, (err, result) => {
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error While fetching Issue details', err)
+            let apiresponse = response.generate(true, 500, 'Error While fetching watchList', err)
             res.send(apiresponse)
         }
         else if (check.isEmpty(result)) {
@@ -23,7 +23,7 @@ let addToWatch = (req, res) => {
 
             watcher.save((err, result1) => {
                 if (err) {
-                    let apiresponse = response.generate(true, 403, 'Error While Adding To watchList', err)
+                    let apiresponse = response.generate(true, 500, 'Error While Adding To watchList', null)
                     res.send(apiresponse)
                 }
                 else {
@@ -43,12 +43,12 @@ let addToWatch = (req, res) => {
 }
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
-
+//removing A user From Watch List
 let removeFromWatch = (req, res) => {
     console.log(req.params.issueId+" "+req.body.userId)
     watchModel.update({ 'issueId': req.params.issueId }, { $pull: { 'watcher': req.params.userId } },(err, result) => {
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error While Adding To watchList', err)
+            let apiresponse = response.generate(true, 500, 'Error While Removing from watchList', null)
             res.send(apiresponse)
         }
         else {
@@ -62,10 +62,12 @@ let removeFromWatch = (req, res) => {
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+//Checking If a user is a watcher for an issue
 let isWatcher = (req, res) => {
     watchModel.findOne({ 'watcher': req.params.userId,'issueId': req.params.issueId }, (err, result) => {
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error While fetching watchList', err)
+            let apiresponse = response.generate(true, 500, 'Error While fetching watchList', null)
             res.send(apiresponse)
         }
         else if (result===null || result ===undefined) {
@@ -82,10 +84,11 @@ let isWatcher = (req, res) => {
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+//getting watchlist for an issue
 let getAllWatchers=(req,res)=>{
     watchModel.findOne({'issueId':req.params.issueId},{'watcher':1,"_id":0},(err,result)=>{
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error While fetching watchers', err)
+            let apiresponse = response.generate(true, 500, 'Error While fetching watchers', null)
             res.send(apiresponse)
         }
         else {

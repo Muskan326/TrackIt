@@ -12,7 +12,7 @@ const authModel = mongoose.model('Auth')
 const notifyModel = mongoose.model('Notification')
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
+//Logging in a registered User
 let login = (req, res) => {
     let findUser = () => {
         return new Promise((resolve, reject) => {
@@ -140,14 +140,16 @@ let login = (req, res) => {
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+//Registering a new user
 let signup = (req, res) => {
     userModel.findOne({ 'email': req.body.email }, (err, result) => {
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error While Signing Up', err)
+            let apiresponse = response.generate(true, 500, 'Error While Signing Up', err)
             res.send(response)
         }
         else if (!check.isEmpty(result)) {
-            let apiresponse = response.generate(true, 403, 'User Already Exists', req.body.email)
+            let apiresponse = response.generate(true, 500, 'User Already Exists', req.body.email)
             res.send(apiresponse)
         }
         else {
@@ -162,7 +164,7 @@ let signup = (req, res) => {
             })
             user.save((err, result) => {
                 if (err) {
-                    let apiresponse = response.generate(true, 403, 'Error While Signing Up', err)
+                    let apiresponse = response.generate(true, 500, 'Error While Signing Up', err)
                     res.send(apiresponse)
                 }
                 else {
@@ -171,7 +173,7 @@ let signup = (req, res) => {
                         notify:[]
                     })
                     notify.save((err,result)=>{
-                        if(err){let apiresponse = response.generate(true, 403, 'Error While Signing Up', err)
+                        if(err){let apiresponse = response.generate(true, 500, 'Error While Signing Up', err)
                         res.send(apiresponse)
                     }
                         else{
@@ -188,6 +190,7 @@ let signup = (req, res) => {
 
 }
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+//Log out a registered user
 let logout = (req, res) => {
     authModel.findOneAndRemove({ userId: req.params.userId }, (err, result) => {
         if (err) {
@@ -206,10 +209,11 @@ let logout = (req, res) => {
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
+//Getting list of all users
 let getAllusersList = (req, res) => {
     userModel.find({}, { "userId": 1, "firstName": 1, "lastName": 1, "_id": 0 }, (err, result) => {
         if (err) {
-            let apiresponse = response.generate(true, 403, 'Error while fetching Assigned Issues', err)
+            let apiresponse = response.generate(true, 500, 'Error while fetching Users', null)
             res.send(apiresponse)
         }
         else {
@@ -221,15 +225,16 @@ let getAllusersList = (req, res) => {
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
+//Getting username by Id
 let getUserById = (req, res) => {
     if (req.params.userId == "null" || req.params.userId == "false" || req.params.userId == "undefined" || req.params.userId == null) {
-        let apiresponse = response.generate(false, 403, 'User Name', "Not Yet Assigned")
+        let apiresponse = response.generate(false, 500, 'User Name', "Not Yet Assigned")
         res.send(apiresponse)
     }
     else {
         userModel.findOne({ 'userId': req.params.userId }, { 'firstName': 1, 'lastName': 1, '_id': 0 }, (err, result) => {
             if (err) {
-                let apiresponse = response.generate(true, 403, 'Error while fetching Assigned user', err)
+                let apiresponse = response.generate(true, 500, 'Error while fetching user', null)
                 res.send(apiresponse)
             }
             else if(!check.isEmpty(result)) {
@@ -242,7 +247,7 @@ let getUserById = (req, res) => {
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
+//Checking for Social user's Email
 let getUserByEmail=(req,res)=>{
     if (req.params.email == undefined || req.params.email == null) {
         let apiresponse = response.generate(false, 200, 'Email Not passed', null)
@@ -251,7 +256,7 @@ let getUserByEmail=(req,res)=>{
     else {
         userModel.findOne({'email': req.params.email },(err, result) => {
             if (err) {
-                let apiresponse = response.generate(true, 403, 'Error while fetching user', err)
+                let apiresponse = response.generate(true, 500, 'Error while fetching user', err)
                 res.send(apiresponse)
             }
             else if(check.isEmpty(result)) {
